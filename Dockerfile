@@ -51,7 +51,7 @@ RUN useradd -r -u 200 -m -c "nexus role account" -d ${NEXUS_DATA} -s /bin/false 
 
 VOLUME ${NEXUS_DATA}
 
-EXPOSE 8081:8082
+EXPOSE 8081
 USER nexus
 WORKDIR /opt/sonatype/nexus
 
