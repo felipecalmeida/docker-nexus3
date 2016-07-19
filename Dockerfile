@@ -51,12 +51,12 @@ RUN useradd -r -u 200 -m -c "nexus role account" -d ${NEXUS_DATA} -s /bin/false 
 
 VOLUME ${NEXUS_DATA}
 
-EXPOSE 8081
+EXPOSE 8081:8082
 USER nexus
 WORKDIR /opt/sonatype/nexus
 
-ENV JAVA_MAX_MEM 1200m
-ENV JAVA_MIN_MEM 1200m
-ENV EXTRA_JAVA_OPTS ""
+ENV JAVA_MAX_MEM 256m
+ENV JAVA_MIN_MEM 1024m
+ENV EXTRA_JAVA_OPTS "-XX:MaxMetaspaceSize=512m -XX:+UseG1GC -XX:+UseStringDeduplication"
 
 CMD ["/opt/sonatype/nexus/bin/nexus","run"]
